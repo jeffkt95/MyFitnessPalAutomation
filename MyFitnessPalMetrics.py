@@ -127,26 +127,22 @@ class MyFitnessPalMetrics:
         exerciseMessage = "Exercise: " + str(self.caloriesBurned) + " calories burned exercising. Burn " + str(self.MIN_CALORIES_EXERCISED) + " to help earn an 'Excellent'."
         if (self.grade == MyFitnessPalGrade.EXCELLENT):
             message = message + "\n" + ";) Excellent!"
-            message = message + "\n" + "  " + self.username + " did very well."
             message = (message + "\n" + "  " + self.username + " stayed within " + self.proPosL + " calorie goal, stayed within " + self.proPosL + 
                 " sugar goal, and " + self.proL + " also exercised.")
             message = message + "\n" + "  " + "Keep it up!"
         elif (self.grade == MyFitnessPalGrade.GOOD):
             message = message + "\n" + ":) Good!"
-            message = message + "\n" + "  " + self.username + " did very well."
             message = message + "\n" + "  " + self.username + " stayed within " + self.proPosL + " calorie goal and stayed within " + self.proPosL + " sugar goal."
             message = message + "\n" + "  " + "Keep it up!"
             message = message + "\n" + "  " + "To earn an 'Excellent' add " + str(self.MIN_CALORIES_EXERCISED) + " calories of exercise."
         elif (self.grade == MyFitnessPalGrade.OK):
             message = message + "\n" + ":| OK"
-            message = message + "\n" + "  " + self.username + " did OK."
             message = (message + "\n" + "  " + self.username + " logged " + self.proPosL + 
                 " calories, stayed at least within the maintenance calorie range, and stayed within " 
                 + str(self.OK_SUGAR_OVERAGE_FACTOR) + " times the sugar goal.")
             message = message + "\n" + "  " + "To earn a good, " + self.proL + " must stay within " + self.proPosL + " calorie and sugar goals."
         elif (self.grade == MyFitnessPalGrade.BAD):
             message = message + "\n" + ":( Bad"
-            message = message + "\n" + "  " + self.username + " did badly."
             if (not self.metMinimumLoggingGoal):
                 message = (message + "\n" + "  " + self.username + " didn't log that day. " + self.proC + " has to log at least " + 
                     str(self.MINIMUM_CALORIES_LOGGED) + ". " + self.proC + " only logged " + str(self.netCalories) + ".")

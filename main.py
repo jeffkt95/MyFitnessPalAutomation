@@ -18,22 +18,31 @@ def main():
     username = sys.argv[2]
     password = sys.argv[3]
     
+    textJeff = False
+    textKatie = False
+    if ("textJeff" in sys.argv):
+        textJeff = True
+    if ("textKatie" in sys.argv):
+        textKatie = True
+    
     mfpClient = myfitnesspal.Client(username, password)
     
     yesterday = datetime.datetime.now() - timedelta(days=numberOfDaysAgo)
     
     mfpMetrics = MyFitnessPalMetrics(mfpClient, yesterday, username)
 
-    #mfpMetrics.printMetrics()
-    
     gradeMessage = mfpMetrics.getGradeMessage()
     
     print(gradeMessage)
     
-    print("Texting message....")
-    twilioClient = TwilioSms()
-    twilioClient.sendMessage("-\n" + gradeMessage, "+14073739626")
-    twilioClient.sendMessage("-\n" + gradeMessage, "+14435387234")
+    if (textJeff or textKatie):
+        print("Texting message....")
+        twilioClient = TwilioSms()
+        if (textJeff):
+            twilioClient.sendMessage("-\n" + gradeMessage, "+14073739626")
+        if (textKatie):
+            twilioClient.sendMessage("-\n" + gradeMessage, "+14435387234")
+
     
 if __name__ == "__main__":
     main()
